@@ -1,0 +1,59 @@
+; VARIOUS PREPROCESSING OPTIONS	
+define = -DPOSRES
+
+; RUN CONTROL PARAMETERS
+
+integrator         = md
+dt                 = 1E-3 ; time step (in ps)
+nsteps             = 10000 ; number of steps
+
+; OUTPUT CONTROL OPTIONS
+nstxout            = 500 ; save coordinates every ps
+nstvout            = 0 ; save velocities every ps
+nstenergy          = 500 ; save energies every ps
+nstlog             = 500 ; update log file every ps
+; Output frequency and precision for xtc file
+nstxtcout                = 20
+xtc-precision            = 1000
+energygrps         = DA Water
+energygrp_table = DA DA DA Water
+
+;freezegrps         = DUM
+;freezedim          = Y Y Y
+
+; NEIGHBORSEARCHING PARAMETERS
+nstlist            = 5
+ns_type            = grid
+pbc                = xyz
+rlist              = 1.25
+
+; OPTIONS FOR ELECTROSTATICS AND VDW
+cutoff-scheme            = Group
+
+
+coulombtype              = User
+rcoulomb                 = 1.25
+; Dielectric constant (DC) for cut-off or DC of reaction field
+epsilon-r                = 1
+; Method for doing Van der Waals
+vdw-type                 = User
+; cut-off lengths
+rvdw                     = 1.25
+; Apply long range dispersion corrections for Energy and Pressure
+;DispCorr                 = EnerPres
+
+; TEMPERATURE COUPLING
+tcoupl             = v-rescale ; Couple temperature to external heat bath according to velocity rescale method
+tc-grps            = system ; Use separate heat baths for Protein and Non-Protein groups
+tau_t              = 0.1 ; Coupling time constant, controlling strength of coupling
+ref_t              = 300 ; Temperature of heat bath
+
+
+; PRESSURE COUPLING
+pcoupl              = No ;
+
+; GENERATE VELOCITIES FOR STARTUP RUN
+gen_vel            = no; Assign velocities to particles by taking them randomly from a Maxwell distribution
+gen_temp           = 300 ; Temperature to generate corresponding Maxwell distribution
+gen_seed           = -1 ; Seed for (semi) random number generation. Different numbers give different sets of velocities
+
