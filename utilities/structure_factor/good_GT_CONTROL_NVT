@@ -1,0 +1,66 @@
+NVT equlibrium simulation for Water-Argon System
+
+#
+# Algorithm and ensemble parameters
+#
+integration leapfrog 
+temperature      300.00
+#pressure         0.001
+#ensemble npt ber 0.500 0.500
+ensemble nvt ber 0.500
+
+#
+#time interval and output parameters
+#
+steps            4000
+timestep         1.0E-3
+
+print              1000
+stack              1000
+stats              100
+traj          100   100   0
+rdf           10
+#zdensity      10   0.5  126.7
+print rdf
+#print rdf 
+
+job time            259200.00
+close time          1000.00
+
+#
+# pre production parameters
+#
+#equil               1000
+#scale               100
+#restart 
+restart noscale
+#restart scale
+# collect
+
+
+#
+# neighbour list parameters
+#
+no link
+delr width       0.50000
+
+#
+# coulombic force calculation parameter
+#
+cutoff           11.0000
+eps              1.0
+lmf
+lsigma 4.5000
+
+#
+# VDW force calculation parameter 
+#
+rvdw      11.0000
+
+
+#
+# Special rigid body and constrain control parameter
+#
+shake 1.0E-5
+quaternion 1.0E-5
+finish 
